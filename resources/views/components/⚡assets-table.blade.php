@@ -1,0 +1,1 @@
+{{-- This file is intentionally left blank. The Livewire component class lives in app/Livewire/AssetsTable.php and its Blade template in resources/views/livewire/assets-table.blade.php. --}}

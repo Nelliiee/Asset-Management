@@ -15,13 +15,12 @@ class Category extends Model
 
     protected $fillable = [
         'name',
-        'slug',
         'created_at',
         'updated_at',
     ];
 
     public function assets(): HasMany
     {
-        return $this->hasMany(\App\Models\Asset::class);
+        return $this->hasMany(Asset::class);
     }
 }

@@ -20,17 +20,38 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 24px;
         }
         .brand {
             font-size: 1.5rem;
             font-weight: bold;
         }
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
         .nav a {
             text-decoration: none;
             color: #1e40af;
-            margin-left: 14px;
             font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #e0ecff;
+        }
+        @media (max-width: 640px) {
+            .topbar {
+                align-items: stretch;
+            }
+            .nav {
+                width: 100%;
+            }
+            .nav a {
+                flex: 1 1 100%;
+                text-align: center;
+            }
         }
         .hero {
             background: linear-gradient(135deg, #0f172a, #2563eb);
@@ -97,8 +118,9 @@
         <div class="topbar">
             <div class="brand">Asset Management</div>
             <div class="nav">
-                <a href="/">Welcome</a>
-                <a href="/home">Home</a>
+                <a href="{{ url('/') }}">Welcome</a>
+                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('assets') }}">Assets</a>
             </div>
         </div>
 

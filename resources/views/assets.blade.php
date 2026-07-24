@@ -20,17 +20,38 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
             margin-bottom: 24px;
         }
         .brand {
             font-size: 1.5rem;
             font-weight: bold;
         }
+        .nav {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
         .nav a {
             text-decoration: none;
             color: #1e40af;
-            margin-left: 14px;
             font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #e0ecff;
+        }
+        @media (max-width: 640px) {
+            .topbar {
+                align-items: stretch;
+            }
+            .nav {
+                width: 100%;
+            }
+            .nav a {
+                flex: 1 1 100%;
+                text-align: center;
+            }
         }
         .card {
             background: white;
@@ -59,6 +80,51 @@
             font-size: 0.85rem;
             font-weight: 700;
         }
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            border: 0;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+        }
+        .btn-secondary {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .btn-danger {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+        .actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        @media (max-width: 640px) {
+            .table-header {
+                align-items: stretch;
+            }
+            .btn {
+                width: 100%;
+            }
+        }
     </style>
 </head>
 <body>
@@ -66,41 +132,12 @@
         <div class="topbar">
             <div class="brand">Asset Management</div>
             <div class="nav">
-                <a href="/home">Home</a>
-                <a href="/assets">Assets</a>
+                <a href="{{ route('home') }}">Home</a>
+                <a href="{{ route('assets') }}">Assets</a>
             </div>
         </div>
 
-        <div class="card">
-            <h1>Assets</h1>
-
-            @if ($assets->isEmpty())
-                <p>No assets found.</p>
-            @else
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Asset Code</th>
-                            <th>Name</th>
-                            <th>Status</th>
-                            <th>Category</th>
-                            <th>Brand</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($assets as $asset)
-                            <tr>
-                                <td>{{ $asset->asset_code }}</td>
-                                <td>{{ $asset->name }}</td>
-                                <td><span class="badge">{{ ucfirst($asset->status) }}</span></td>
-                                <td>{{ $asset->category?->name ?? 'Uncategorized' }}</td>
-                                <td>{{ $asset->brand?->name ?? 'No brand' }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-            @endif
-        </div>
+        <livewire:assets-table />
     </div>
 </body>
 </html>

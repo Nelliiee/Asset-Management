@@ -20,7 +20,7 @@ Route::get('/home', function () {
         'maintenanceAssets' => Asset::where('status', 'maintenance')->count(),
         'availableAssets' => Asset::where('status', 'available')->count(),
     ]);
-});
+})->name('home');
 
 Route::get('/assets', function () {
     $assets = Asset::with(['category', 'brand'])
@@ -30,4 +30,4 @@ Route::get('/assets', function () {
     return view('assets', [
         'assets' => $assets,
     ]);
-});
+})->name('assets');
