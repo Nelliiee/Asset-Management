@@ -110,54 +110,48 @@
         <section class="stats">
             <div class="card">
                 <h3>Total Assets</h3>
-                <p>248</p>
+                <p>{{ $totalAssets }}</p>
             </div>
             <div class="card">
                 <h3>Assigned</h3>
-                <p>142</p>
+                <p>{{ $assignedAssets }}</p>
             </div>
             <div class="card">
                 <h3>Maintenance</h3>
-                <p>19</p>
+                <p>{{ $maintenanceAssets }}</p>
             </div>
             <div class="card">
                 <h3>Available</h3>
-                <p>87</p>
+                <p>{{ $availableAssets }}</p>
             </div>
         </section>
 
         <section class="table-card">
             <h2>Recent Assets</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Asset Code</th>
-                        <th>Name</th>
-                        <th>Status</th>
-                        <th>Category</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>AST-001</td>
-                        <td>Desktop PC</td>
-                        <td><span class="badge">Assigned</span></td>
-                        <td>Computers</td>
-                    </tr>
-                    <tr>
-                        <td>AST-002</td>
-                        <td>Projector</td>
-                        <td><span class="badge">Available</span></td>
-                        <td>Office Equipment</td>
-                    </tr>
-                    <tr>
-                        <td>AST-003</td>
-                        <td>Printer</td>
-                        <td><span class="badge">Maintenance</span></td>
-                        <td>Printing</td>
-                    </tr>
-                </tbody>
-            </table>
+            @if ($assets->isEmpty())
+                <p>No assets found yet.</p>
+            @else
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Asset Code</th>
+                            <th>Name</th>
+                            <th>Status</th>
+                            <th>Category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($assets as $asset)
+                            <tr>
+                                <td>{{ $asset->asset_code }}</td>
+                                <td>{{ $asset->name }}</td>
+                                <td><span class="badge">{{ ucfirst($asset->status) }}</span></td>
+                                <td>{{ $asset->category?->name ?? 'Uncategorized' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
         </section>
     </div>
 </body>

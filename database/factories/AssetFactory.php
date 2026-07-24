@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\Category;
 use App\Models\Brand;
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,11 +21,11 @@ class AssetFactory extends Factory
         return [
             'category_id' => Category::factory(),
             'brand_id' => Brand::factory(),
-            'name' => fake()->text(20),
-            'serial_number' => fake()->uuid(),
-            'asset_code' => fake()->bothify('ASSET-####'),
-            'expiry_date' => now()->addMonth(),
-            'status' => 'available',
+            'name' => fake()->sentence(3),
+            'serial_number' => fake()->unique()->bothify('SN-########'),
+            'asset_code' => fake()->unique()->bothify('ASSET-####'),
+            'expiry_date' => now()->addMonths(fake()->numberBetween(1, 24)),
+            'status' => fake()->randomElement(['available', 'assigned', 'maintenance']),
         ];
     }
 }

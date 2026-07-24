@@ -2,21 +2,18 @@
 
 namespace App\Models;
 
-use App\Enums\AssetStatus;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-
 
 class Asset extends Model
 {
     use HasFactory;
 
-
     public $table = 'assets';
+
     protected $fillable = [
         'category_id',
         'brand_id',
@@ -25,11 +22,13 @@ class Asset extends Model
         'asset_code',
         'expiry_date',
         'status',
-        'created_at',
-        'updated_at',
     ];
 
-    protected $casts = [];
+    protected $casts = [
+        'expiry_date' => 'datetime',
+        'created_at' => 'datetime',
+        'updated_at' => 'datetime',
+    ];
 
     public function brand(): BelongsTo
     {
