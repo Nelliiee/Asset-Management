@@ -21,3 +21,13 @@ Route::get('/home', function () {
         'availableAssets' => Asset::where('status', 'available')->count(),
     ]);
 });
+
+Route::get('/assets', function () {
+    $assets = Asset::with(['category', 'brand'])
+        ->latest()
+        ->get();
+
+    return view('assets', [
+        'assets' => $assets,
+    ]);
+});
