@@ -4,7 +4,7 @@ use App\Models\Asset;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/admin/login');
 });
 
 Route::get('/home', function () {
