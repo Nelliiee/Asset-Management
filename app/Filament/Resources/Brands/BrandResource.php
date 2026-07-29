@@ -51,10 +51,9 @@ class BrandResource extends Resource
                     ->sortable(),
                 TextColumn::make('slug')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable(),  
                 TextColumn::make('description')
                     ->searchable()
-                    ->wrap()
                     ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()

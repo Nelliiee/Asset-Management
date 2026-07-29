@@ -1,13 +1,38 @@
-<?php
+<div class="card">
+    <div class="table-header">
+        <h1>Categories</h1>
+        <a class="btn btn-primary" href="{{ url('/admin/categories') }}">Add Category</a>
+    </div>
 
-use Livewire\Component;
+    @if (session()->has('message'))
+        <p class="message">{{ session('message') }}</p>
+    @endif
 
-new class extends Component
-{
-    //
-};
-?>
-
-<div>
-    {{-- Nothing in life is to be feared, it is only to be understood. Now is the time to understand more, so that we may fear less. - Maria Skłodowska-Curie --}}
+    @if ($categories->isEmpty())
+        <p>No categories found.</p>
+    @else
+        <table>
+            <thead>
+                <tr>
+                    <th>Category Code</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($categories as $category)
+                    <tr>
+                        <td>{{ $category->slug }}</td>
+                        <td>{{ $category->name }}</td>
+                        <td>
+                            <div class="actions">
+                                <button class="btn btn-secondary" wire:click="updateCategory({{ $category->id }})">Update</button>
+                                <button class="btn btn-danger" wire:click="deleteCategory({{ $category->id }})">Delete</button>
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @endif
 </div>
