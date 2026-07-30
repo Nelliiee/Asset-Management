@@ -28,6 +28,11 @@ class Building extends Model
         return $this->HasMany(Classroom::class);
     }
 
+    public function assets(): HasMany
+    {
+        return $this->HasMany(Asset::class);
+    }
+
     public function getAssetsCountAttribute()
     {
         return $this->classrooms->sum(function ($classroom) {

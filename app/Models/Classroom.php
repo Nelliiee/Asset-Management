@@ -39,6 +39,11 @@ class Classroom extends Model
         return $this->hasMany(AssetGroup::class);
     }
 
+    public function getAssetsCountAttribute()
+    {
+        return $this->assets()->count();
+    }
+
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'classroom_id');

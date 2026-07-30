@@ -39,6 +39,16 @@ class Asset extends Model
         return $this->belongsTo(Category::class);
     }
 
+    public function classroom(): BelongsTo
+    {
+        return $this->belongsTo(Classroom::class);
+    }
+
+    public function building(): BelongsTo
+    {
+        return $this->belongsTo(Building::class);
+    }
+
     public function assetTags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class, 'asset_tags', 'asset_id', 'asset_tag_id');

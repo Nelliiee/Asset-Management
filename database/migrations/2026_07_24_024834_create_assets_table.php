@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('asset_code')->unique();
             $table->dateTime('expiry_date')->nullable();
             $table->string('status')->default('available');
+            $table->foreignId('classroom_id')->constrained('classrooms')->onDelete('cascade');
+            $table->foreignId('building_id')->constrained('buildings')->onDelete('cascade');
             $table->timestamps();
         });
     }
