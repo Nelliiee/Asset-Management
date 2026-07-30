@@ -16,4 +16,9 @@ class ListCategories extends ListRecords
             CreateAction::make(),
         ];
     }
+
+    protected function getTableActions(): array
+    {
+        return [];
+    }
 }
