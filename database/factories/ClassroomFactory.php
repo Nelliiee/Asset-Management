@@ -20,6 +20,7 @@ class ClassroomFactory extends Factory
         return [
             'name'=> fake()->text(20),
             'is_active'=> fake()->boolean(),
+            'building_id' => Building::factory(),
         ];
     }
 }
