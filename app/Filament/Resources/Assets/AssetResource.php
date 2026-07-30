@@ -43,9 +43,14 @@ class AssetResource extends Resource
                 TextInput::make('asset_code')
                     ->required(),
                 DateTimePicker::make('expiry_date'),
-                TextInput::make('status')
+                Select::make('status')
                     ->required()
-                    ->default('available'),
+                    ->default('available')
+                    ->options([
+                        'available' => 'Available',
+                        'in_use' => 'In Use',
+                        'maintenance' => 'Maintenance',
+                    ]),
             ]);
     }
 
