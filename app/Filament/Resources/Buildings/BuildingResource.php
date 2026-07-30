@@ -43,8 +43,6 @@ class BuildingResource extends Resource
     {
         return [
             'index' => ListBuildings::route('/'),
-            'create' => CreateBuilding::route('/create'),
-            'edit' => EditBuilding::route('/{record}/edit'),
         ];
     }
 
