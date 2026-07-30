@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\Categories;
 
-use App\Filament\Resources\Categories\Pages\CreateCategories;
-use App\Filament\Resources\Categories\Pages\EditCategories;
 use App\Filament\Resources\Categories\Pages\ListCategories;
 use App\Filament\Resources\Categories\Schemas\CategoriesForm;
 use App\Filament\Resources\Categories\Tables\CategoriesTable;
@@ -41,8 +39,6 @@ class CategoriesResource extends Resource
     {
         return [
             'index' => ListCategories::route('/'),
-            'create' => CreateCategories::route('/create'),
-            'edit' => EditCategories::route('/{record}/edit'),
         ];
     }
 }
