@@ -12,8 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('assets', function (Blueprint $table) {
-            $table->foreignId('classroom_id')->nullable()->after('status')->constrained('classrooms')->onDelete('cascade');
-            $table->foreignId('building_id')->nullable()->after('classroom_id')->constrained('buildings')->onDelete('cascade');
+            if (! Schema::hasColumn('assets', 'classroom_id')) {
+                $table->foreignId('classroom_id')->nullable()->after('status')->constrained('classrooms')->onDelete('cascade');
+            }
+
+            if (! Schema::hasColumn('assets', 'building_id')) {
+                $table->foreignId('building_id')->nullable()->after('classroom_id')->constrained('buildings')->onDelete('cascade');
+            }
         });
     }
 
