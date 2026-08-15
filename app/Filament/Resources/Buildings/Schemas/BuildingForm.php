@@ -18,8 +18,8 @@ class BuildingForm
                     ->label('Building Name')
                     ->required()
                     ->maxLength(255),
-                TextInput::make('slug')
-                    ->label('Building Slug')
+                TextInput::make('code')
+                    ->label('Building Code')
                     ->required()
                     ->maxLength(255),
             ]);

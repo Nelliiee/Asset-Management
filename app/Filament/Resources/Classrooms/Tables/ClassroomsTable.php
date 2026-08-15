@@ -21,9 +21,9 @@ class ClassroomsTable
             ->columns([
                 TextColumn::make('building.name')
                     ->searchable(),
-                TextColumn::make('name')
+                TextColumn::make('room_number')
                     ->searchable(),
-                TextColumn::make('slug')
+                TextColumn::make('code')
                     ->searchable(),
                 TextColumn::make('floor')
                     ->numeric()

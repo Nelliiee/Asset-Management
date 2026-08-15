@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('classrooms', function (Blueprint $table) {
             $table->id();
             $table->foreignId('building_id')->constrained('buildings')->onDelete('cascade');
-            $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('room_number');
+            $table->string('code')->unique();
             $table->integer('floor');
             $table->boolean('is_active')->default(true);
             $table->softDeletes();

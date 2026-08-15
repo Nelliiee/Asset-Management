@@ -18,6 +18,7 @@ class BuildingFactory extends Factory
     {
         return [
             'name'=> fake()->text(20),
+            'code' => fake()->unique()->word(),
             'is_active'=> fake()->boolean(),
         ];
     }

@@ -16,9 +16,9 @@ class Classroom extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'name',
+        'room_number',
         'capacity',
-        'slug',
+        'code',
         'floor',
         'building_id',
         'floor',

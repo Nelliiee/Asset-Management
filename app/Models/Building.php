@@ -16,7 +16,7 @@ class Building extends Model
     protected $table = "buildings";
     protected $fillable = [
         'name',
-        'slug',
+        'code',
         'is_active',
         'created_at',
         'updated_at',

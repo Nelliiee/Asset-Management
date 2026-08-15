@@ -21,7 +21,7 @@ class BuildingsTable
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('slug')
+                TextColumn::make('code')
                     ->searchable()
                     ->sortable(),
                 TextColumn::make('created_at')

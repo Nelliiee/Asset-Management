@@ -16,9 +16,9 @@ class ClassroomForm
                 Select::make('building_id')
                     ->relationship('building', 'name')
                     ->required(),
-                TextInput::make('name')
+                TextInput::make('room_number')
                     ->required(),
-                TextInput::make('slug')
+                TextInput::make('code')
                     ->required(),
                 TextInput::make('floor')
                     ->required()

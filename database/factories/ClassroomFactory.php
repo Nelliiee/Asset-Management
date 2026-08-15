@@ -18,7 +18,8 @@ class ClassroomFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=> fake()->text(20),
+            'room_number'=> fake()->text(20),
+            'code' => fake()->unique()->word(),
             'is_active'=> fake()->boolean(),
             'building_id' => Building::factory(),
         ];
