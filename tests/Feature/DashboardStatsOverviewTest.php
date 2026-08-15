@@ -30,11 +30,11 @@ class DashboardStatsOverviewTest extends TestCase
     public function test_blog_posts_chart_uses_real_asset_status_counts(): void
     {
         $building = Building::factory()->create([
-            'slug' => 'building-1',
+            'code' => 'building-1',
         ]);
         $classroom = Classroom::factory()->create([
             'building_id' => $building->id,
-            'slug' => 'classroom-1',
+            'code' => 'classroom-1',
             'floor' => 1,
         ]);
 
