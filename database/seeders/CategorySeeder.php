@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 
 class CategorySeeder extends Seeder
 {
@@ -16,13 +16,13 @@ class CategorySeeder extends Seeder
         $timestamp = Carbon::now();
 
         $categories = [
-            ['name' => 'Hardware', 'slug' => 'hardware', 'created_at' => $timestamp, 'updated_at' => $timestamp],
-            ['name' => 'Software', 'slug' => 'software', 'created_at' => $timestamp, 'updated_at' => $timestamp],
-            ['name' => 'License', 'slug' => 'license', 'created_at' => $timestamp, 'updated_at' => $timestamp],
-            ['name' => 'Components', 'slug' => 'components', 'created_at' => $timestamp, 'updated_at' => $timestamp],
-            ['name' => 'Accessories', 'slug' => 'accessories', 'created_at' => $timestamp, 'updated_at' => $timestamp],
-            ['name' => 'Computer set', 'slug' => 'computer_set', 'created_at' => $timestamp, 'updated_at' => $timestamp],
-            ['name' => 'Others', 'slug' => 'others', 'created_at' => $timestamp, 'updated_at' => $timestamp],
+            ['name' => 'Hardware', 'created_at' => $timestamp, 'updated_at' => $timestamp],
+            ['name' => 'Software', 'created_at' => $timestamp, 'updated_at' => $timestamp],
+            ['name' => 'License', 'created_at' => $timestamp, 'updated_at' => $timestamp],
+            ['name' => 'Components', 'created_at' => $timestamp, 'updated_at' => $timestamp],
+            ['name' => 'Accessories', 'created_at' => $timestamp, 'updated_at' => $timestamp],
+            ['name' => 'Computer set', 'created_at' => $timestamp, 'updated_at' => $timestamp],
+            ['name' => 'Others', 'created_at' => $timestamp, 'updated_at' => $timestamp],
         ];
 
         DB::table('categories')->insert($categories);

@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Asset;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class AssetsTable extends Component

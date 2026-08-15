@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\BuildingFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -9,11 +10,13 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Building extends Model
 {
-    /** @use HasFactory<\Database\Factories\BuildingFactory> */
+    /** @use HasFactory<BuildingFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
-    protected $table = "buildings";
+    protected $table = 'buildings';
+
     protected $fillable = [
         'name',
         'code',
@@ -21,6 +24,7 @@ class Building extends Model
         'created_at',
         'updated_at',
     ];
+
     protected $dates = ['created_at', 'updated_at', 'deleted_at'];
 
     public function classrooms(): HasMany

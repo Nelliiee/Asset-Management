@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\Asset;
 use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Asset>
+ * @extends Factory<Asset>
  */
 class AssetFactory extends Factory
 {

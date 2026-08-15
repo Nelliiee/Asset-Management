@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Building;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
-*@extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Building>
-*/
+ *@extends Factory<Building>
+ */
 class BuildingFactory extends Factory
 {
     /**
@@ -17,9 +18,9 @@ class BuildingFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'=> fake()->text(20),
+            'name' => fake()->text(20),
             'code' => fake()->unique()->word(),
-            'is_active'=> fake()->boolean(),
+            'is_active' => fake()->boolean(),
         ];
     }
 }

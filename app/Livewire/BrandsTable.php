@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Brand;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class BrandsTable extends Component

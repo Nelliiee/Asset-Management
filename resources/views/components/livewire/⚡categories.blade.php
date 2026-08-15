@@ -14,7 +14,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Category Code</th>
                     <th>Name</th>
                     <th>Actions</th>
                 </tr>
@@ -22,7 +21,6 @@
             <tbody>
                 @foreach ($categories as $category)
                     <tr>
-                        <td>{{ $category->slug }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
                             <div class="actions">

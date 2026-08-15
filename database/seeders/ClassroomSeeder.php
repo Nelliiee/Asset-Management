@@ -2,10 +2,10 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Models\Building;
 use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
 class ClassroomSeeder extends Seeder
@@ -25,7 +25,6 @@ class ClassroomSeeder extends Seeder
             ['building_id' => $buildings[1]->id, 'floor' => 2, 'room_number' => 'Classroom 4', 'code' => Str::slug('Classroom 4'), 'is_active' => true, 'created_at' => $now, 'updated_at' => $now],
             ['building_id' => $buildings[2]->id, 'floor' => 1, 'room_number' => 'Classroom 5', 'code' => Str::slug('Classroom 5'), 'is_active' => true, 'created_at' => $now, 'updated_at' => $now],
         ];
-
 
         DB::table('classrooms')->insert($classrooms);
     }

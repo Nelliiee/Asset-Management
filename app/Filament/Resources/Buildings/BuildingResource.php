@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\Buildings;
 
-use App\Filament\Resources\Buildings\Pages\CreateBuilding;
-use App\Filament\Resources\Buildings\Pages\EditBuilding;
 use App\Filament\Resources\Buildings\Pages\ListBuildings;
 use App\Filament\Resources\Buildings\Schemas\BuildingForm;
 use App\Filament\Resources\Buildings\Tables\BuildingsTable;

@@ -14,7 +14,6 @@
         <table>
             <thead>
                 <tr>
-                    <th>Brand Code</th>
                     <th>Name</th>
                     <th>Description</th>
                     <th>Actions</th>
@@ -23,7 +22,6 @@
             <tbody>
                 @foreach ($brands as $brand)
                     <tr>
-                        <td>{{ $brand->slug }}</td>
                         <td>{{ $brand->name }}</td>
                         <td>{{ $brand->description }}</td>
                         <td>

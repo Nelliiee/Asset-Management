@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-namespace App\Filament\Resources\Brands\Pages;  
+namespace App\Filament\Resources\Brands\Pages;
 
 use App\Filament\Resources\Brands\BrandResource;
 use Filament\Actions\CreateAction;

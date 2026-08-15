@@ -3,11 +3,12 @@
 namespace Database\Factories;
 
 use App\Models\Asset;
+use App\Models\AssetTag;
 use App\Models\Tag;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\AssetTag>
+ * @extends Factory<AssetTag>
  */
 class AssetTagFactory extends Factory
 {

@@ -3,10 +3,11 @@
 namespace Database\Factories;
 
 use App\Models\Building;
+use App\Models\Classroom;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Classroom>
+ * @extends Factory<Classroom>
  */
 class ClassroomFactory extends Factory
 {
@@ -18,9 +19,9 @@ class ClassroomFactory extends Factory
     public function definition(): array
     {
         return [
-            'room_number'=> fake()->text(20),
+            'room_number' => fake()->text(20),
             'code' => fake()->unique()->word(),
-            'is_active'=> fake()->boolean(),
+            'is_active' => fake()->boolean(),
             'building_id' => Building::factory(),
         ];
     }

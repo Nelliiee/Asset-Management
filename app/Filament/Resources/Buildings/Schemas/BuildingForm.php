@@ -5,8 +5,8 @@ namespace App\Filament\Resources\Buildings\Schemas;
 use App\Filament\Resources\Buildings\Pages\CreateBuildings;
 use App\Filament\Resources\Buildings\Pages\EditBuildings;
 use App\Filament\Resources\Buildings\Pages\ListBuildings;
-use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
 
 class BuildingForm
 {
@@ -32,5 +32,5 @@ class BuildingForm
             'edit' => EditBuildings::route('/{record}/edit'),
             'index' => ListBuildings::route('/'),
         ];
-    }   
+    }
 }

@@ -5,8 +5,8 @@ namespace App\Filament\Resources\Categories\Schemas;
 use App\Filament\Resources\Categories\Pages\CreateCategories;
 use App\Filament\Resources\Categories\Pages\EditCategories;
 use App\Filament\Resources\Categories\Pages\ListCategories;
-use Filament\Schemas\Schema;
 use Filament\Forms\Components\TextInput;
+use Filament\Schemas\Schema;
 
 class CategoriesForm
 {
@@ -21,7 +21,7 @@ class CategoriesForm
             ]);
     }
 
-     public static function getPages(): array
+    public static function getPages(): array
     {
         return [
             'create' => CreateCategories::route('/create'),

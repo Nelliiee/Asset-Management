@@ -3,7 +3,6 @@
 namespace App\Livewire;
 
 use App\Models\Category;
-use Livewire\Attributes\On;
 use Livewire\Component;
 
 class CategoriesTable extends Component

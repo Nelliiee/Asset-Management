@@ -31,12 +31,12 @@ return new class extends Migration
             ->get(['id', 'name']);
 
         foreach ($rows as $row) {
-            $base = Str::slug((string) ($row->name ?: 'building-' . $row->id));
-            $code = $base ?: 'building-' . $row->id;
+            $base = Str::slug((string) ($row->name ?: 'building-'.$row->id));
+            $code = $base ?: 'building-'.$row->id;
             $suffix = 1;
 
             while (DB::table('buildings')->where('code', $code)->where('id', '!=', $row->id)->exists()) {
-                $code = $base . '-' . $suffix;
+                $code = $base.'-'.$suffix;
                 $suffix++;
             }
 

@@ -37,17 +37,17 @@ return new class extends Migration
             ->get(['id', 'building_id']);
 
         foreach ($rows as $row) {
-            $roomNumber = 'Room ' . ($row->id ?? '1');
+            $roomNumber = 'Room '.($row->id ?? '1');
             $buildingName = DB::table('buildings')->where('id', $row->building_id)->value('name');
             if ($buildingName) {
-                $roomNumber = $buildingName . ' - ' . $roomNumber;
+                $roomNumber = $buildingName.' - '.$roomNumber;
             }
 
             $code = Str::slug($roomNumber);
             $suffix = 1;
 
             while (DB::table('classrooms')->where('code', $code)->where('id', '!=', $row->id)->exists()) {
-                $code = Str::slug($roomNumber) . '-' . $suffix;
+                $code = Str::slug($roomNumber).'-'.$suffix;
                 $suffix++;
             }
 

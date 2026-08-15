@@ -18,7 +18,7 @@ class DashboardStatsOverviewTest extends TestCase
 
     public function test_dashboard_registers_stats_overview_widget(): void
     {
-        $dashboard = new Dashboard();
+        $dashboard = new Dashboard;
         $method = new ReflectionMethod(Dashboard::class, 'getHeaderWidgets');
         $method->setAccessible(true);
 
@@ -59,7 +59,7 @@ class DashboardStatsOverviewTest extends TestCase
             'building_id' => $building->id,
         ]);
 
-        $widget = new BlogPostsChart();
+        $widget = new BlogPostsChart;
         $method = new ReflectionMethod(BlogPostsChart::class, 'getData');
         $method->setAccessible(true);
 
