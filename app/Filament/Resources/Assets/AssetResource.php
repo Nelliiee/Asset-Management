@@ -44,7 +44,7 @@ class AssetResource extends Resource
                     ->required(),
                 DateTimePicker::make('expiry_date'),
                 Select::make('classroom_id')
-                    ->relationship('classroom', 'name')
+                    ->relationship('classroom', 'room_number')
                     ->required(),
                 Select::make('building_id')
                     ->relationship('building', 'name')
