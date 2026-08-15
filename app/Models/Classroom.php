@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Database\Factories\ClassroomFactory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -10,9 +11,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Classroom extends Model
 {
-
-    /** @use HasFactory<\Database\Factories\ClassroomFactory> */
+    /** @use HasFactory<ClassroomFactory> */
     use HasFactory;
+
     use SoftDeletes;
 
     protected $fillable = [
@@ -21,7 +22,7 @@ class Classroom extends Model
         'code',
         'floor',
         'building_id',
-        'floor',
+        'is_active',
     ];
 
     public function building(): BelongsTo
@@ -47,5 +48,19 @@ class Classroom extends Model
     public function tickets(): HasMany
     {
         return $this->hasMany(Ticket::class, 'classroom_id');
+    }
+
+    protected static function boot(): void
+    {
+        parent::boot();
+
+        static::saving(function (self $classroom) {
+            if ($classroom->isDirty('building_id')) {
+                $building = Building::find($classroom->building_id);
+                if ($building) {
+                    $classroom->code = $building->code;
+                }
+            }
+        });
     }
 }
