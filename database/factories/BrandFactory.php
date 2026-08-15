@@ -18,8 +18,6 @@ class BrandFactory extends Factory
     {
         return [
             'name' => $this->faker->company(),
-            'slug' => $this->faker->slug(),
-            'description' => $this->faker->sentence(),
         ];
     }
 }

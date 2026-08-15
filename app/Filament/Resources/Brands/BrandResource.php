@@ -32,12 +32,6 @@ class BrandResource extends Resource
                 TextInput::make('name')
                     ->required()
                     ->maxLength(255),
-                TextInput::make('slug')
-                    ->required()
-                    ->maxLength(255),
-                Textarea::make('description')
-                    ->rows(3)
-                    ->columnSpanFull(),
             ]);
     }
 
@@ -49,12 +43,6 @@ class BrandResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
-                TextColumn::make('slug')
-                    ->searchable()
-                    ->sortable(),  
-                TextColumn::make('description')
-                    ->searchable()
-                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
