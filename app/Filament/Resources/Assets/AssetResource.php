@@ -78,6 +78,10 @@ class AssetResource extends Resource
                 TextColumn::make('expiry_date')
                     ->dateTime()
                     ->sortable(),
+                TextColumn::make('classroom.room_number')
+                    ->searchable(),
+                TextColumn::make('building.name')
+                    ->searchable(),
                 TextColumn::make('status')
                     ->searchable(),
                 TextColumn::make('created_at')
