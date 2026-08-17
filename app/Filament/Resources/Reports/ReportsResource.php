@@ -7,7 +7,7 @@ use App\Filament\Resources\Reports\Pages\EditReports;
 use App\Filament\Resources\Reports\Pages\ListReports;
 use App\Filament\Resources\Reports\Schemas\ReportsForm;
 use App\Filament\Resources\Reports\Tables\ReportsTable;
-use App\Models\Reports;
+use App\Models\Report;
 use BackedEnum;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
@@ -16,7 +16,7 @@ use Filament\Tables\Table;
 
 class ReportsResource extends Resource
 {
-    protected static ?string $model = Reports::class;
+    protected static ?string $model = Report::class;
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
 

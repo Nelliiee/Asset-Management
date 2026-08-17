@@ -18,7 +18,10 @@ class ReportFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'asset_id' => \App\Models\Asset::factory(),
+            'reporter_id' => \App\Models\User::factory(),
+            'description' => $this->faker->paragraph(),
+            'status' => $this->faker->randomElement(['pending', 'in_progress', 'resolved']),
         ];
     }
 }
