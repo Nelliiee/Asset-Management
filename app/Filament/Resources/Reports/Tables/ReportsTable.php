@@ -3,13 +3,11 @@
 namespace App\Filament\Resources\Reports\Tables;
 
 use App\Filament\Exports\ReportExporter;
-use App\Filament\Imports\ReportImporter;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
 use Filament\Actions\ExportAction;
-use Filament\Actions\ImportAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -59,9 +57,8 @@ class ReportsTable
             ])
             ->toolbarActions([
                 ExportAction::make()
+                    ->color('info')
                     ->exporter(ReportExporter::class),
-                ImportAction::make()
-                    ->importer(ReportImporter::class),
                 Action::make('print')
                     ->label('Print')
                     ->icon('heroicon-o-printer')

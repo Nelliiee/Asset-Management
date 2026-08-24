@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Assets;
 
+use App\Filament\Imports\AssetImporter;
 use App\Filament\Resources\Assets\Pages\ManageAssets;
 use App\Models\Asset;
 use BackedEnum;
@@ -9,6 +10,7 @@ use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
+use Filament\Actions\ImportAction;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -101,6 +103,9 @@ class AssetResource extends Resource
                 DeleteAction::make(),
             ])
             ->toolbarActions([
+                ImportAction::make()
+                    ->color('info')
+                    ->importer(AssetImporter::class),
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),

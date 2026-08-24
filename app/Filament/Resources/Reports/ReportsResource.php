@@ -2,8 +2,6 @@
 
 namespace App\Filament\Resources\Reports;
 
-use App\Filament\Resources\Reports\Pages\CreateReports;
-use App\Filament\Resources\Reports\Pages\EditReports;
 use App\Filament\Resources\Reports\Pages\ListReports;
 use App\Filament\Resources\Reports\Schemas\ReportsForm;
 use App\Filament\Resources\Reports\Tables\ReportsTable;
@@ -18,7 +16,7 @@ class ReportsResource extends Resource
 {
     protected static ?string $model = Report::class;
 
-    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedRectangleStack;
+    protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedDocumentText;
 
     public static function form(Schema $schema): Schema
     {
@@ -37,12 +35,10 @@ class ReportsResource extends Resource
         ];
     }
 
-     public static function getPages(): array
+    public static function getPages(): array
     {
         return [
-            'index' => ListReports ::route('/'),
-            'create' => CreateReports::route('/create'),
-            'edit' => EditReports::route('/{record}/edit'),
+            'index' => ListReports::route('/'),
         ];
     }
 }
