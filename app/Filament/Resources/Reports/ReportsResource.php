@@ -37,10 +37,10 @@ class ReportsResource extends Resource
         ];
     }
 
-    public static function getPages(): array
+     public static function getPages(): array
     {
         return [
-            'index' => ListReports::route('/'),
+            'index' => ListReports ::route('/'),
             'create' => CreateReports::route('/create'),
             'edit' => EditReports::route('/{record}/edit'),
         ];
