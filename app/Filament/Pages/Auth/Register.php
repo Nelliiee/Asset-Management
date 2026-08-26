@@ -4,6 +4,7 @@ namespace App\Filament\Pages\Auth;
 
 use Filament\Auth\Pages\Register as BaseRegister;
 use Filament\Notifications\Notification;
+use Filament\Support\Actions\Action;
 
 class Register extends BaseRegister
 {
@@ -13,5 +14,7 @@ class Register extends BaseRegister
             ->title('Registration complete')
             ->success()
             ->send();
+
+        $this->redirect($this->getLoginUrl());
     }
 }
