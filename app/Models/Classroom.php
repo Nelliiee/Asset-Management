@@ -55,12 +55,33 @@ class Classroom extends Model
         parent::boot();
 
         static::saving(function (self $classroom) {
-            if ($classroom->isDirty('building_id')) {
-                $building = Building::find($classroom->building_id);
-                if ($building) {
-                    $classroom->code = $building->code;
-                }
+            $building = $classroom->building()->first() ?: Building::find($classroom->building_id);
+
+            if (! $building) {
+                return;
             }
+
+            $autoFilledCode = $classroom->isDirty('building_id') || blank($classroom->code) || $classroom->code === $building->code;
+
+            if ($autoFilledCode) {
+                $baseCode = $building->code;
+            } else {
+                $baseCode = $classroom->code;
+            }
+
+            if (blank($baseCode)) {
+                return;
+            }
+
+            $code = $baseCode;
+            $suffix = 1;
+
+            while (self::query()->where('code', $code)->whereKeyNot($classroom->getKey())->exists()) {
+                $code = $baseCode.'-'.$suffix;
+                $suffix++;
+            }
+
+            $classroom->code = $code;
         });
     }
 }
