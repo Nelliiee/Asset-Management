@@ -11,6 +11,17 @@ class Asset extends Model
 {
     use HasFactory;
 
+    protected static function booted(): void
+    {
+        static::creating(function (self $asset): void {
+            do {
+                $assetCode = 'AST-'.random_int(100, 999);
+            } while (self::query()->where('asset_code', $assetCode)->exists());
+
+            $asset->asset_code = $assetCode;
+        });
+    }
+
     public $table = 'assets';
 
     protected $fillable = [

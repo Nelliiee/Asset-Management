@@ -32,4 +32,14 @@ class AssetResourceTest extends TestCase
         $this->assertNotNull($component);
         $this->assertSame('A-101', $component->getOptions()[$classroom->getKey()]);
     }
+
+    public function test_asset_code_is_generated_and_unique(): void
+    {
+        $firstAsset = Asset::factory()->create();
+        $secondAsset = Asset::factory()->create();
+
+        $this->assertMatchesRegularExpression('/^AST-[0-9]{3}$/', $firstAsset->asset_code);
+        $this->assertMatchesRegularExpression('/^AST-[0-9]{3}$/', $secondAsset->asset_code);
+        $this->assertNotSame($firstAsset->asset_code, $secondAsset->asset_code);
+    }
 }

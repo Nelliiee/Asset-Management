@@ -24,7 +24,6 @@ class AssetFactory extends Factory
             'brand_id' => Brand::factory(),
             'name' => fake()->sentence(3),
             'serial_number' => fake()->unique()->bothify('SN-########'),
-            'asset_code' => fake()->unique()->bothify('ASSET-####'),
             'expiry_date' => now()->addMonths(fake()->numberBetween(1, 24)),
             'status' => fake()->randomElement(['available', 'assigned', 'maintenance']),
         ];

@@ -43,7 +43,8 @@ class AssetResource extends Resource
                 TextInput::make('serial_number')
                     ->required(),
                 TextInput::make('asset_code')
-                    ->required(),
+                    ->disabled()
+                    ->dehydrated(false),
                 DateTimePicker::make('expiry_date'),
                 Select::make('classroom_id')
                     ->relationship('classroom', 'room_number')

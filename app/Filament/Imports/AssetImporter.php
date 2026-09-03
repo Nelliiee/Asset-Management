@@ -37,9 +37,6 @@ class AssetImporter extends Importer
             ImportColumn::make('serial_number')
                 ->requiredMapping()
                 ->rules(['required']),
-            ImportColumn::make('asset_code')
-                ->requiredMapping()
-                ->rules(['required']),
             ImportColumn::make('expiry_date')
                 ->rules(['nullable', 'date']),
             ImportColumn::make('status')
