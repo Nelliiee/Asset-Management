@@ -2,6 +2,8 @@
 
 namespace App\Filament\Resources\Classrooms\Tables;
 
+use Filament\Actions\ActionGroup;
+use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -47,8 +49,11 @@ class ClassroomsTable
                 TrashedFilter::make(),
             ])
             ->recordActions([
+                ActionGroup::make([
+                ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),
+            ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

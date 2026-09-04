@@ -7,6 +7,8 @@ use App\Filament\Resources\Assets\Pages\ManageAssets;
 use App\Models\Asset;
 use BackedEnum;
 use Filament\Actions\BulkActionGroup;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\ViewAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
@@ -102,8 +104,11 @@ class AssetResource extends Resource
                 //
             ])
             ->recordActions([
+                ActionGroup::make([
+                ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),
+            ]),
             ])
             ->toolbarActions([
                 ImportAction::make()

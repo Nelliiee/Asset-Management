@@ -5,6 +5,8 @@ namespace App\Filament\Resources\Brands;
 use App\Filament\Resources\Brands\Pages\ManageBrands;
 use App\Models\Brand;
 use BackedEnum;
+use Filament\Actions\ActionGroup;
+use Filament\Actions\ViewAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -55,8 +57,11 @@ class BrandResource extends Resource
                 //
             ])
             ->recordActions([
+                ActionGroup::make([
+                ViewAction::make(),
                 EditAction::make(),
                 DeleteAction::make(),
+            ]),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([
