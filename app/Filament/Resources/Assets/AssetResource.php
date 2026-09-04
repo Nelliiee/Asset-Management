@@ -68,6 +68,10 @@ class AssetResource extends Resource
         return $table
             ->recordTitleAttribute('name')
             ->columns([
+                 TextColumn::make('asset_code')
+                    ->badge()
+                    ->color('info')
+                    ->searchable(),
                 TextColumn::make('category.name')
                     ->searchable(),
                 TextColumn::make('brand.name')
@@ -76,17 +80,15 @@ class AssetResource extends Resource
                     ->searchable(),
                 TextColumn::make('serial_number')
                     ->searchable(),
-                TextColumn::make('asset_code')
-                    ->searchable(),
-                TextColumn::make('expiry_date')
-                    ->dateTime()
-                    ->sortable(),
                 TextColumn::make('classroom.room_number')
                     ->searchable(),
                 TextColumn::make('building.name')
                     ->searchable(),
                 TextColumn::make('status')
                     ->searchable(),
+                TextColumn::make('expiry_date')
+                    ->dateTime()
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
