@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="A clearer way to track, assign, and care for every company asset.">
-    <title>QCU | Asset Management</title>
+    <title>QCU | SchoLab</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
@@ -158,7 +158,7 @@
 </head>
 <body>
     <header class="shell nav">
-        <a class="brand" href="{{ url('/') }}"><img class="brand-mark" src="{{ asset('images/cropped-logo.webp') }}" alt=""> Asset Management</a>
+        <a class="brand" href="{{ url('/') }}"><img class="brand-mark" src="{{ asset('images/cropped-logo.webp') }}" alt=""> SchoLab</a>
         <nav class="nav-links" aria-label="Main navigation">
             <a href="#about">About</a>
         </nav>
@@ -173,10 +173,10 @@
             <div>
                 <div class="eyebrow">Asset operations, made clear</div>
                 <h1>Know what you have. Know where it is.</h1>
-                <p class="hero-copy">Asset Management gives your team one calm, reliable place to track equipment, understand its status, and make better decisions with less chasing.</p>
+                <p class="hero-copy">SchoLab gives your team one calm, reliable place to track equipment, understand its status, and make better decisions with less chasing.</p>
                 <div class="hero-actions">
                     <a class="button button-primary" href="/admin/register">Start managing <span aria-hidden="true">&#8594;</span></a>
-                    <a class="button button-light" href="#about">Why Asset Management</a>
+                    <a class="button button-light" href="#about">Why SchoLab</a>
                 </div>
             </div>
 
@@ -200,7 +200,7 @@
         <section class="about" id="about">
             <h2>Less guesswork. More ownership.</h2>
             <div class="about-copy">
-                <p>From the first purchase to its next assignment, every asset has a story. Ledgerly helps your team keep that story visible, current, and useful.</p>
+                <p>From the first purchase to its next assignment, every asset has a story. SchoLab helps your team keep that story visible, current, and useful.</p>
                 <p>Whether you are running a growing office, a busy classroom, or a distributed operation, your inventory should feel like a source of confidence, not another spreadsheet to maintain.</p>
                 <div class="principles">
                     <div class="principle"><strong>See the whole picture</strong><span>A live overview of what is assigned, available, and needing attention.</span></div>
@@ -211,6 +211,6 @@
         </section>
     </main>
 
-    <footer class="shell">Asset Management · A clearer way to care for what keeps work moving.</footer>
+    <footer class="shell">SchoLab · A clearer way to care for what keeps work moving.</footer>
 </body>
 </html>
