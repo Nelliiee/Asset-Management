@@ -15,6 +15,7 @@ class StatsOverview extends StatsOverviewWidget
         $availableAssets = Asset::query()->where('status', 'available')->count();
         $inUseAssets = Asset::query()->where('status', 'in_use')->count();
         $maintenanceAssets = Asset::query()->where('status', 'maintenance')->count();
+        $forDisposalAssets = Asset::query()->where('status', 'for_disposal')->count();
 
         return [
             Stat::make('Total assets', $totalAssets)
@@ -33,6 +34,10 @@ class StatsOverview extends StatsOverviewWidget
                 ->description('Needs attention')
                 ->descriptionIcon(Heroicon::OutlinedExclamationTriangle)
                 ->color('danger'),
+            Stat::make('For disposal', $forDisposalAssets)
+                ->description('Marked for disposal')
+                ->descriptionIcon(Heroicon::OutlinedTrash)
+                ->color('secondary'),
         ];
     }
 }

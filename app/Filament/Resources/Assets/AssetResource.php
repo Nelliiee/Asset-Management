@@ -61,6 +61,7 @@ class AssetResource extends Resource
                         'available' => 'Available',
                         'in_use' => 'In Use',
                         'maintenance' => 'Maintenance',
+                        'for_disposal' => 'For Disposal',
                     ]),
             ]);
     }

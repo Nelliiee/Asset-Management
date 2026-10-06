@@ -58,6 +58,11 @@ class DashboardStatsOverviewTest extends TestCase
             'classroom_id' => $classroom->id,
             'building_id' => $building->id,
         ]);
+        Asset::factory()->create([
+            'status' => 'for_disposal',
+            'classroom_id' => $classroom->id,
+            'building_id' => $building->id,
+        ]);
 
         $widget = new BlogPostsChart;
         $method = new ReflectionMethod(BlogPostsChart::class, 'getData');
@@ -65,7 +70,34 @@ class DashboardStatsOverviewTest extends TestCase
 
         $data = $method->invoke($widget);
 
-        $this->assertSame(['Total assets', 'Available', 'In use', 'Maintenance'], $data['labels']);
-        $this->assertSame([4, 2, 1, 1], $data['datasets'][0]['data']);
+        $this->assertSame(['Total assets', 'Available', 'In use', 'Maintenance', 'For disposal'], $data['labels']);
+        $this->assertSame([5, 2, 1, 1, 1], $data['datasets'][0]['data']);
+    }
+
+    public function test_stats_overview_includes_for_disposal_count(): void
+    {
+        $building = Building::factory()->create([
+            'code' => 'building-2',
+        ]);
+        $classroom = Classroom::factory()->create([
+            'building_id' => $building->id,
+            'code' => 'classroom-2',
+            'floor' => 2,
+        ]);
+
+        Asset::factory()->create([
+            'status' => 'for_disposal',
+            'classroom_id' => $classroom->id,
+            'building_id' => $building->id,
+        ]);
+
+        $widget = new StatsOverview;
+        $method = new ReflectionMethod(StatsOverview::class, 'getStats');
+        $method->setAccessible(true);
+
+        $stats = $method->invoke($widget);
+
+        $this->assertSame('For disposal', $stats[4]->getLabel());
+        $this->assertSame(1, $stats[4]->getValue());
     }
 }

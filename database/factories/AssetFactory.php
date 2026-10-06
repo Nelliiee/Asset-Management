@@ -25,7 +25,7 @@ class AssetFactory extends Factory
             'name' => fake()->sentence(3),
             'serial_number' => fake()->unique()->bothify('SN-########'),
             'expiry_date' => now()->addMonths(fake()->numberBetween(1, 24)),
-            'status' => fake()->randomElement(['available', 'assigned', 'maintenance']),
+            'status' => fake()->randomElement(['available', 'assigned', 'maintenance', 'for_disposal']),
         ];
     }
 }

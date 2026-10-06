@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('serial_number')->unique();
             $table->string('asset_code')->unique();
             $table->dateTime('expiry_date')->nullable();
-            $table->string('status')->default('available');
+            $table->string('status')->default('available')
+                ->comment('available, in_use, maintenance, for_disposal');
+            $table->foreignId('classroom_id')->constrained('classrooms')->onDelete('cascade');
+            $table->foreignId('building_id')->constrained('buildings')->onDelete('cascade');
             $table->timestamps();
         });
     }
