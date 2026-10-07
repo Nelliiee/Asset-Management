@@ -88,6 +88,16 @@ class AssetResource extends Resource
                 TextColumn::make('building.name')
                     ->searchable(),
                 TextColumn::make('status')
+                    ->badge()
+                    ->color(function ($state) {
+                        return match ($state) {
+                            'available' => 'success',
+                            'in_use' => 'warning',
+                            'maintenance' => 'danger',
+                            'for_disposal' => 'secondary',
+                            default => 'primary',
+                        };
+                    })
                     ->searchable(),
                 TextColumn::make('expiry_date')
                     ->dateTime()
