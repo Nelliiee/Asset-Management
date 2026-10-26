@@ -2,13 +2,13 @@
 
 namespace App\Filament\Resources\Reports\Tables;
 
-use App\Filament\Exports\ReportExporter;
+use App\Filament\Exports\ReportDocxExporter;
 use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ExportAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
@@ -56,9 +56,13 @@ class ReportsTable
                 EditAction::make(),
             ])
             ->toolbarActions([
-                ExportAction::make()
+                Action::make('exportDocx')
+                    ->label('Export DOCX')
                     ->color('info')
-                    ->exporter(ReportExporter::class),
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->action(fn (HasTable $livewire, ReportDocxExporter $exporter) => $exporter->download(
+                        $livewire->getTableQueryForExport(),
+                    )),
                 Action::make('print')
                     ->label('Print')
                     ->icon('heroicon-o-printer')

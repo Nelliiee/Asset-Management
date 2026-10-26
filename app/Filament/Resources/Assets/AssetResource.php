@@ -2,25 +2,31 @@
 
 namespace App\Filament\Resources\Assets;
 
-use App\Filament\Imports\AssetImporter;
+use App\Filament\AssetDocxTransfer;
 use App\Filament\Resources\Assets\Pages\ManageAssets;
 use App\Models\Asset;
 use BackedEnum;
-use Filament\Actions\BulkActionGroup;
+use Filament\Actions\Action;
 use Filament\Actions\ActionGroup;
-use Filament\Actions\ViewAction;
+use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Actions\EditAction;
-use Filament\Actions\ImportAction;
+use Filament\Actions\ViewAction;
 use Filament\Forms\Components\DateTimePicker;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
+use Filament\Notifications\Notification;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\ValidationException;
+use RuntimeException;
 
 class AssetResource extends Resource
 {
@@ -71,7 +77,7 @@ class AssetResource extends Resource
         return $table
             ->recordTitleAttribute('name')
             ->columns([
-                 TextColumn::make('asset_code')
+                TextColumn::make('asset_code')
                     ->badge()
                     ->color('info')
                     ->searchable(),
@@ -116,15 +122,60 @@ class AssetResource extends Resource
             ])
             ->recordActions([
                 ActionGroup::make([
-                ViewAction::make(),
-                EditAction::make(),
-                DeleteAction::make(),
-            ]),
+                    ViewAction::make(),
+                    EditAction::make(),
+                    DeleteAction::make(),
+                ]),
             ])
             ->toolbarActions([
-                ImportAction::make()
+                Action::make('exportDocx')
+                    ->label('Export DOCX')
                     ->color('info')
-                    ->importer(AssetImporter::class),
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->action(fn (HasTable $livewire, AssetDocxTransfer $transfer) => $transfer->download(
+                        $livewire->getTableQueryForExport(),
+                    )),
+                Action::make('importDocx')
+                    ->label('Import DOCX')
+                    ->color('info')
+                    ->icon('heroicon-o-arrow-up-tray')
+                    ->schema([
+                        FileUpload::make('file')
+                            ->label('DOCX file')
+                            ->disk('local')
+                            ->directory('asset-imports')
+                            ->visibility('private')
+                            ->acceptedFileTypes([
+                                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+                                'application/zip',
+                                'application/x-zip-compressed',
+                            ])
+                            ->maxSize(10240)
+                            ->required(),
+                    ])
+                    ->action(function (array $data, AssetDocxTransfer $transfer): void {
+                        $filePath = $data['file'] ?? null;
+
+                        if (! is_string($filePath) || $filePath === '') {
+                            throw ValidationException::withMessages([
+                                'file' => 'Select a DOCX file to import.',
+                            ]);
+                        }
+
+                        try {
+                            $importedRows = $transfer->import(Storage::disk('local')->path($filePath));
+                        } finally {
+                            if (Storage::disk('local')->exists($filePath) && ! Storage::disk('local')->delete($filePath)) {
+                                throw new RuntimeException('Unable to remove the uploaded DOCX file.');
+                            }
+                        }
+
+                        Notification::make()
+                            ->title('Asset import complete')
+                            ->body("{$importedRows} ".str('asset')->plural($importedRows).' imported.')
+                            ->success()
+                            ->send();
+                    }),
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
                 ]),
