@@ -22,6 +22,9 @@ class ReportsTable
                     ->label('Asset')
                     ->searchable()
                     ->sortable(),
+                TextColumn::make('asset.asset_code')
+                    ->label('Asset Code')
+                    ->searchable(),
                 TextColumn::make('reporter.name')
                     ->label('Reporter')
                     ->searchable()
