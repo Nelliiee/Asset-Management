@@ -30,6 +30,7 @@ class Asset extends Model
         'brand_id',
         'classroom_id',
         'building_id',
+        'asset_group_id',
         'name',
         'serial_number',
         'terminal_number',
@@ -62,6 +63,11 @@ class Asset extends Model
     public function building(): BelongsTo
     {
         return $this->belongsTo(Building::class);
+    }
+
+    public function assetGroup(): BelongsTo
+    {
+        return $this->belongsTo(AssetGroup::class);
     }
 
     public function assetTags(): BelongsToMany

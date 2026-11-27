@@ -92,6 +92,16 @@ class AssetResource extends Resource
                 TextColumn::make('name')
                     ->searchable()
                     ->toggleable(),
+                TextColumn::make('assetGroup.name')
+                    ->label('Asset Group')
+                    ->searchable()
+                    ->toggleable(),
+                TextColumn::make('assetGroup.code')
+                    ->label('Group Code')
+                    ->badge()
+                    ->color('info')
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('serial_number')
                     ->searchable()
                     ->toggleable(),
