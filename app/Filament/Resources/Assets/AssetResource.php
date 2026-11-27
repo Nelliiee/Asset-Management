@@ -23,6 +23,7 @@ use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
@@ -80,19 +81,29 @@ class AssetResource extends Resource
                 TextColumn::make('asset_code')
                     ->badge()
                     ->color('info')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('category.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('brand.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('serial_number')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
+                TextColumn::make('terminal_number')
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('classroom.room_number')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('building.name')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('status')
                     ->badge()
                     ->color(function ($state) {
@@ -104,10 +115,12 @@ class AssetResource extends Resource
                             default => 'primary',
                         };
                     })
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('expiry_date')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -118,7 +131,29 @@ class AssetResource extends Resource
                     ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
-                //
+                SelectFilter::make('category')
+                    ->relationship('category', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('brand')
+                    ->relationship('brand', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('classroom')
+                    ->relationship('classroom', 'room_number')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('building')
+                    ->relationship('building', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('status')
+                    ->options([
+                        'available' => 'Available',
+                        'in_use' => 'In Use',
+                        'maintenance' => 'Maintenance',
+                        'for_disposal' => 'For Disposal',
+                    ]),
             ])
             ->recordActions([
                 ActionGroup::make([

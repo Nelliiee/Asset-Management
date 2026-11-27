@@ -32,6 +32,7 @@ class Asset extends Model
         'building_id',
         'name',
         'serial_number',
+        'terminal_number',
         'asset_code',
         'expiry_date',
         'status',

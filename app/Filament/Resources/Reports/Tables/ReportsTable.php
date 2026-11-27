@@ -21,17 +21,21 @@ class ReportsTable
                 TextColumn::make('asset.name')
                     ->label('Asset')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('asset.asset_code')
                     ->label('Asset Code')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('reporter.name')
                     ->label('Reporter')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('description')
                     ->limit(80)
-                    ->wrap(),
+                    ->wrap()
+                    ->toggleable(),
                 TextColumn::make('status')
                     ->badge()
                     ->color(fn (string $state): string => match ($state) {
@@ -41,7 +45,8 @@ class ReportsTable
                         default => 'gray',
                     })
                     ->formatStateUsing(fn (string $state): string => str($state)->replace('_', ' ')->title())
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -54,6 +59,14 @@ class ReportsTable
                         'in_progress' => 'In Progress',
                         'resolved' => 'Resolved',
                     ]),
+                SelectFilter::make('asset')
+                    ->relationship('asset', 'name')
+                    ->searchable()
+                    ->preload(),
+                SelectFilter::make('reporter')
+                    ->relationship('reporter', 'name')
+                    ->searchable()
+                    ->preload(),
             ])
             ->recordActions([
                 EditAction::make(),

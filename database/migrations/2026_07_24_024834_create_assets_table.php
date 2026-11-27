@@ -17,6 +17,7 @@ return new class extends Migration
             $table->foreignId('brand_id')->constrained('brands')->onDelete('cascade');
             $table->string('name');
             $table->string('serial_number')->unique();
+            $table->string('terminl_number')->nullable();
             $table->string('asset_code')->unique();
             $table->dateTime('expiry_date')->nullable();
             $table->string('status')->default('available')
